@@ -10,7 +10,6 @@ router.get('/practice', validateSession, function(req,res)
 {
     res.send('Hey! This is a practice route!')
 })
-
 router.get('/about', function(req,res)
 {
     res.send('This is the about route')
@@ -24,9 +23,9 @@ router.post('/create', validateSession, (req,res) => {
 //router.post('/create',(req,res) => {
     
     const journalEntry = {
-        description: req.body.log.description,
-        definition: req.body.log.definition,
-        result: req.body.log.result,
+        title: req.body.journal.title,
+        date: req.body.journal.date,
+        entry: req.body.journal.entry,
         owner: req.user.id 
     }
     Journal.create(journalEntry)
@@ -45,7 +44,6 @@ router.get("/",(req,res) => {
 router.get("/mine", validateSession, (req,res) => {
 //router.get("/mine", (req,res) => {
     let userid = req.user.id
-    // let userid = req.body.user.email
     Journal.findAll({
       where: {owner: userid}
     })
@@ -66,10 +64,9 @@ router.get("/:title", function (req,res) {
 router.put("/update/:entryId", validateSession, function (req,res) { 
 //router.put("/update/:entryId", function (req,res) {  
     const updateJournalEntry = {
-        description: req.body.log.description,
-        definition: req.body.log.definition,
-        result: req.body.log.result,
-        // owner: req.user.id 
+        title: req.body.journal.title,
+        date: req.body.journal.date,
+        entry: req.body.journal.entry
     };
      
     const query = {where: { id: req.params.entryId, owner: req.user.id }}

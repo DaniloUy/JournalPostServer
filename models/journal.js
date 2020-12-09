@@ -1,14 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
     const Journal = sequelize.define('journal', {
-        description: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        definition: {
+        date: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        result: {
+        entry: {
             type: DataTypes.STRING,
             allowNull: false
         },

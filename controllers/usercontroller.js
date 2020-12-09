@@ -7,14 +7,16 @@ const bcrypt = require("bcryptjs")
   USER SIGNUP
 ***************/
 
-router.post('/register', function(req,res) {
+router.post('/create', function(req,res) {
 
       User.create ({
           /*
           email: "user@email.com",
           password: "password1234"
           */
-          email: req.body.user.email, 
+          email: req.body.user.email,
+          // password: req.body.user.password
+          // ***** New code  
           password: bcrypt.hashSync(req.body.user.password,13)
       })
       // *** Update code
